@@ -15,6 +15,8 @@ SDL_Texture *player_texture = NULL;
 
 extern SDL_Rect floor_rect;
 
+extern SDL_Rect left_edge_rect, right_edge_rect, top_edge_rect, bottom_edge_rect;
+
 void init() {
     SDL_Init(SDL_INIT_VIDEO);
     IMG_Init(IMG_INIT_PNG);
@@ -86,6 +88,11 @@ int main(int argc, char *args[]) {
             if(e.type == SDL_QUIT || (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE)) {
                 running = false;
             }
+        }
+
+        if(SDL_HasIntersection(&right_edge_rect, &main_player.player_collider) || SDL_HasIntersection(&left_edge_rect, &main_player.player_collider)) {
+            SDL_Delay(2000);
+            running = false;
         }
 
         float time_step = step_timer.get_ticks() / 1000.f;
