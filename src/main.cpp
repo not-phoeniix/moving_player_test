@@ -99,6 +99,12 @@ int main(int argc, char *args[]) {
         main_player.move(time_step, SCREEN_HEIGHT, SCREEN_WIDTH);
         main_player.render(main_renderer, player_texture);
 
+        if(SCREEN_SHOW_COLLIDERS) {
+            SDL_SetRenderDrawColor(main_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+            SDL_RenderDrawRect(main_renderer, &floor_rect);
+            SDL_RenderDrawRect(main_renderer, &main_player.player_collider);
+        }
+
         step_timer.start();
 
         SDL_RenderPresent(main_renderer);

@@ -18,6 +18,8 @@ class player {
 
         void render(SDL_Renderer *renderer, SDL_Texture *texture);
 
+        SDL_Rect player_collider;
+
     private:
         float pos_x, pos_y;
 
@@ -26,6 +28,4 @@ class player {
         SDL_RendererFlip flip_type;
 
         bool on_ground;
-
-        SDL_Rect player_collider;
 };

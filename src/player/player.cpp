@@ -9,8 +9,8 @@ using namespace std;
 extern SDL_Rect floor_rect;
 
 player::player() {
-    pos_x = 0;
-    pos_y = 0;
+    pos_x = pix_x_coord(SCREEN_PIX_WIDTH / 2);
+    pos_y = pix_y_coord(15);
 
     vel_x = 0;
     vel_y = 0;
@@ -62,17 +62,6 @@ void player::move(float time_step, int screen_height, int screen_width) {
         pos_y = floor_rect.y - BOX_SIZE;
         on_ground = true;
     }
-
-    /*
-    if(pos_y < 0) {
-        vel_y = 0;
-        pos_y = 0;
-    } else if(pos_y + BOX_SIZE > screen_height) {
-        vel_y = 0;
-        pos_y = screen_height - BOX_SIZE;
-        on_ground = true;
-    }
-    */
 }
 
 void player::render(SDL_Renderer *renderer, SDL_Texture *texture) {
