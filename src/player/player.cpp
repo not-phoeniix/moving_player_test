@@ -55,7 +55,7 @@ void player::move(float time_step, int screen_height, int screen_width) {
     }
 
     if(!on_ground) {
-        vel_y += GRAVITY_SCALE;
+        vel_y += GRAVITY_SCALE * time_step;
         pos_y += vel_y * time_step;
     }
 

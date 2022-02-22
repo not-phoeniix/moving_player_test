@@ -5,8 +5,8 @@ class player {
     public:
         const int BOX_SIZE = (SCREEN_WIDTH / SCREEN_PIX_WIDTH) * 4;
         const int PLAYER_VEL = 500;
-        const int JUMP_SCALE = 40;
-        const int GRAVITY_SCALE = 20;
+        const int JUMP_SCALE = 1;
+        const int GRAVITY_SCALE = 800;
 
         player();
 
