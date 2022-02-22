@@ -6,6 +6,8 @@
 
 using namespace std;
 
+extern SDL_Rect floor_rect;
+
 player::player() {
     pos_x = 0;
     pos_y = 0;
@@ -43,32 +45,34 @@ void player::input() {
 
 void player::move(float time_step, int screen_height, int screen_width) {
     pos_x += vel_x * time_step;
-    //player_collider.x = pos_x;
-
+    
     if(pos_x < 0){
         vel_x = 0;
         pos_x = 0;
-        //player_collider.x = 0;
     } else if(pos_x + BOX_SIZE > screen_width) {
         vel_x = 0;
         pos_x = screen_width - BOX_SIZE;
-        //player_collider.x = screen_width - BOX_SIZE;
     }
 
     vel_y += GRAVITY_SCALE;
     pos_y += vel_y * time_step;
-    //player_collider.y = pos_y;
 
+    if(SDL_HasIntersection(&player_collider, &floor_rect)) {
+        vel_y = 0;
+        pos_y = floor_rect.y - BOX_SIZE;
+        on_ground = true;
+    }
+
+    /*
     if(pos_y < 0) {
         vel_y = 0;
         pos_y = 0;
-        //player_collider.y = 0;
     } else if(pos_y + BOX_SIZE > screen_height) {
         vel_y = 0;
         pos_y = screen_height - BOX_SIZE;
-        //player_collider.y = screen_height - BOX_SIZE;
         on_ground = true;
     }
+    */
 }
 
 void player::render(SDL_Renderer *renderer, SDL_Texture *texture) {

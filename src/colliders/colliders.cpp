@@ -18,7 +18,7 @@ int pix_y_coord(int h_offset) {
 
 SDL_Rect floor_rect = {
     .x = pix_x_coord(3),
-    .y = pix_y_coord(32),
+    .y = pix_y_coord(31),
     .w = pix_x_coord(60),
     .h = pix_y_coord(3)
 };
