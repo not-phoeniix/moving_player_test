@@ -54,8 +54,10 @@ void player::move(float time_step, int screen_height, int screen_width) {
         pos_x = screen_width - BOX_SIZE;
     }
 
-    vel_y += GRAVITY_SCALE;
-    pos_y += vel_y * time_step;
+    if(!on_ground) {
+        vel_y += GRAVITY_SCALE;
+        pos_y += vel_y * time_step;
+    }
 
     if(SDL_HasIntersection(&player_collider, &floor_rect)) {
         vel_y = 0;
